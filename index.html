@@ -100,30 +100,32 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Parlayan başlık -->
-        <div class="glow-title">Birlikte Sonsuza Dek</div>
-
-        <!-- Kayan yazı -->
-        <div class="marquee">
-            <span>❤️ Hayatım, iyi ki seninle tanıştım... Birlikte nice mutlu yıllara! ❤️&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;Sonsuza kadar seninle... 💍&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;Seni çok seviyorum... 🌹 </span>
+    <div class="container" id="surprise-container">
+        <div class="glow-title" style="font-size:2.2em;">Hazır mısın?</div>
+        <div style="margin: 38px 0 30px 0;">
+            <button id="revealBtn" style="font-size:1.3em;padding:18px 44px;border-radius:12px;background:linear-gradient(90deg,#ea80fc,#ab47bc,#fffde4);color:#fff;font-weight:bold;border:none;box-shadow:0 4px 24px #c158dc55;cursor:pointer;transition:transform 0.2s;">Buraya Tıkla!</button>
         </div>
-
-        <div class="message">
-            Canım hayat arkadaşım,<br>
-            Seninle geçirdiğim her gün, hayatımın en güzel günü.<br>
-            <strong>Seni çok seviyorum! 💖</strong>
-        </div>
-
-        <div class="gallery">
-            <img src="foto1.jpg" alt="Birlikte Fotoğrafımız">
-            <img src="foto2.jpg" alt="Birlikte Fotoğrafımız">
-            <img src="foto3.jpg" alt="Birlikte Fotoğrafımız">
-            <!-- İstediğin kadar fotoğraf ekleyebilirsin -->
-        </div>
-        <div class="date">
-            11 Ekim 2025 - Ankara
-        </div>
+        <div id="heart-animation" style="display:none;font-size:3em;animation: pop 1.2s ease;">💖💍💖</div>
     </div>
+    <audio id="surprise-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c6b7b6b2.mp3"></audio>
+    <style>
+        @keyframes pop {
+            0% { transform: scale(0.2); opacity: 0; }
+            70% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+    <script>
+    document.getElementById('revealBtn').onclick = function() {
+        var btn = this;
+        btn.style.display = 'none';
+        var heart = document.getElementById('heart-animation');
+        heart.style.display = 'block';
+        document.getElementById('surprise-audio').play();
+        setTimeout(function(){
+            window.location.href = 'jariya.html';
+        }, 2200);
+    };
+    </script>
 </body>
 </html>
