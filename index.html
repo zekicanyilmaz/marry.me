@@ -3,42 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birlikte Sonsuza Dek</title>
+    <meta name="description" content="A special surprise for someone very special 💖">
+    <meta name="author" content="With Love">
+    <meta property="og:title" content="💍 Special Surprise 💖">
+    <meta property="og:description" content="Something magical is waiting for you...">
+    <meta property="og:type" content="website">
+    
+    <title>💍 Special Surprise 💖</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background: linear-gradient(135deg, #ffe4ec 0%, #e0c3fc 100%);
-            font-family: 'Segoe UI', 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
         }
-        .container {
-            max-width: 700px;
-            margin: 60px auto;
-            background: rgba(255,255,255,0.96);
-            border-radius: 18px;
-            box-shadow: 0 8px 40px rgba(180, 120, 200, 0.15);
-            padding: 36px 32px 28px 32px;
-            text-align: center;
+        
+        /* Floating hearts background */
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-        .glow-title {
-            font-size: 2.7em;
-            font-weight: bold;
-            color: #fff;
-            letter-spacing: 2px;
-            background: linear-gradient(90deg, #ea80fc 0%, #ab47bc 50%, #fffde4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 18px #c158dc) drop-shadow(0 0 34px #fff);
-            animation: glow 2.2s ease-in-out infinite alternate;
-            margin-bottom: 0.3em;
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 20px;
+            animation: float 6s ease-in-out infinite;
         }
-        @keyframes glow {
+        
+        @keyframes float {
             0% {
-                filter: drop-shadow(0 0 12px #c158dc) drop-shadow(0 0 22px #fff);
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
             }
             100% {
-                filter: drop-shadow(0 0 34px #ea80fc) drop-shadow(0 0 50px #fffde4);
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        .container {
+            max-width: 500px;
+            margin: 80px auto;
+            background: rgba(255,255,255,0.95);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 50px 40px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 40px 20px;
+                padding: 40px 30px;
+                max-width: none;
+            }
+        }
+        .glow-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5em;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24, #feca57, #ff9ff3, #54a0ff);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 3s ease-in-out infinite, gradientShift 4s ease-in-out infinite;
+            margin-bottom: 30px;
+            text-shadow: 0 0 30px rgba(255, 107, 107, 0.5);
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        @media (max-width: 768px) {
+            .glow-title {
+                font-size: 2.5em;
+            }
+        }
+        @keyframes glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 20px rgba(255, 107, 107, 0.8)) 
+                       drop-shadow(0 0 40px rgba(84, 160, 255, 0.6));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px rgba(238, 90, 36, 0.8)) 
+                       drop-shadow(0 0 60px rgba(255, 159, 243, 0.6));
             }
         }
         .marquee {
@@ -100,15 +177,71 @@
     </style>
 </head>
 <body>
+    <!-- Floating hearts background -->
+    <div class="hearts" id="hearts-container"></div>
+    
     <div class="container" id="surprise-container">
-        <div class="glow-title" style="font-size:2.2em;">Hazır mısın?</div>
-        <div style="margin: 38px 0 30px 0;">
-            <button id="revealBtn" style="font-size:1.3em;padding:18px 44px;border-radius:12px;background:linear-gradient(90deg,#ea80fc,#ab47bc,#fffde4);color:#fff;font-weight:bold;border:none;box-shadow:0 4px 24px #c158dc55;cursor:pointer;transition:transform 0.2s;">Buraya Tıkla!</button>
+        <div class="glow-title">Hazır mısın?</div>
+        <p style="font-size: 1.2em; color: #666; margin-bottom: 40px; font-weight: 300;">
+            Seni çok özel bir şey bekliyor...
+        </p>
+        <div style="margin: 40px 0;">
+            <button id="revealBtn" class="magic-button">
+                <span>✨ Sürprizi Gör ✨</span>
+            </button>
         </div>
-        <div id="heart-animation" style="display:none;font-size:3em;animation: pop 1.2s ease;">💖💍💖</div>
+        <div id="heart-animation" style="display:none;">
+            <div class="heart-explosion">💖💍💖✨🌹💕</div>
+        </div>
     </div>
     <audio id="surprise-audio" src="https://cdn.pixabay.com/audio/2022/10/16/audio_12c6b7b6b2.mp3"></audio>
     <style>
+        .magic-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24, #feca57, #ff9ff3);
+            background-size: 300% 300%;
+            border: none;
+            padding: 20px 50px;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            transition: all 0.3s ease;
+            animation: gradientShift 3s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .magic-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+        }
+        
+        .magic-button:active {
+            transform: translateY(-2px);
+        }
+        
+        .heart-explosion {
+            font-size: 4em;
+            animation: explode 2s ease-out;
+        }
+        
+        @keyframes explode {
+            0% {
+                transform: scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.5) rotate(180deg);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) rotate(360deg);
+                opacity: 1;
+            }
+        }
+        
         @keyframes pop {
             0% { transform: scale(0.2); opacity: 0; }
             70% { transform: scale(1.2); opacity: 1; }
@@ -116,15 +249,51 @@
         }
     </style>
     <script>
+    // Create floating hearts
+    function createHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = ['💖', '💕', '💗', '💝', '💘'][Math.floor(Math.random() * 5)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        document.getElementById('hearts-container').appendChild(heart);
+        
+        setTimeout(() => {
+            heart.remove();
+        }, 8000);
+    }
+    
+    // Create hearts periodically
+    setInterval(createHeart, 1000);
+    
+    // Button click handler
     document.getElementById('revealBtn').onclick = function() {
         var btn = this;
-        btn.style.display = 'none';
-        var heart = document.getElementById('heart-animation');
-        heart.style.display = 'block';
-        document.getElementById('surprise-audio').play();
-        setTimeout(function(){
-            window.location.href = 'jariya.html';
-        }, 2200);
+        btn.style.transform = 'scale(0.95)';
+        btn.style.opacity = '0.7';
+        
+        setTimeout(() => {
+            btn.style.display = 'none';
+            var heart = document.getElementById('heart-animation');
+            heart.style.display = 'block';
+            
+            // Play audio if available
+            try {
+                document.getElementById('surprise-audio').play();
+            } catch(e) {
+                console.log('Audio not available');
+            }
+            
+            // Create extra hearts explosion
+            for(let i = 0; i < 10; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+            
+            setTimeout(function(){
+                window.location.href = 'jariya.html';
+            }, 2500);
+        }, 200);
     };
     </script>
 </body>
